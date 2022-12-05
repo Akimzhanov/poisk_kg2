@@ -3,6 +3,6 @@ from .models import Post
 
 
 class PostAdmin (admin.ModelAdmin):
-    exclude =['slug', 'status']
+    exclude =['slug', 'blur_image']
 
 admin.site.register(Post, PostAdmin)

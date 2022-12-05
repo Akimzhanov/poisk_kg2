@@ -3,7 +3,20 @@ from django.urls import reverse
 from django.utils.crypto import get_random_string
 from slugify import slugify
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
-# from .utils import get_time
+# from .blur import blur_image_test
+from PIL import Image, ImageFilter
+import os
+
+
+
+
+# def blur_image_test():
+#     image = str(Post.objects.last().image)
+#     image2 = str(os.path.abspath('media'))
+#     image3 = image2+'/'+image
+#     img = Image.open(image3)
+#     blur = img.filter(ImageFilter.BLUR)
+#     blur.show()
 
 class UserManager(BaseUserManager):
     def _create(self, username, email, password, **extra_fields):
@@ -79,25 +92,31 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    # def create_slug(self):
-        # slug_post = get_random_string(length=8)
-        # if Post.objects.filter(slug=slug_post):
-        #     self.create_slug()
-        # self.slug = slug_post 
-        # # self.slug.save()
-
     def __str__(self) -> str:
         return self.title
+
 
     def save(self, *args, **kwargs):
         slug_post = get_random_string(length=14)
         if not self.slug:
             self.slug = slugify(slug_post)
         super().save(*args, **kwargs)
+    
 
-
+            
     class Meta:
         ordering = ('created_at',)
 
     def get_absolute_url(self):
         return reverse("post-detail", kwargs={"pk": self.pk})
+
+
+
+
+
+
+
+
+
+
+

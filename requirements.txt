@@ -6,3 +6,4 @@ wheel
 djangorestframework
 django-filter
 drf-yasg
+pywhatkit

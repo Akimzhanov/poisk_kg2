@@ -5,7 +5,8 @@ from rest_framework.generics import ListAPIView
 from .models import Post
 from .serializers import  PostListSerializer,PostCreateSerializer
 from django_filters import rest_framework as rest_filter
-
+import  pywhatkit
+from source.post.models import Post
 
 
 
@@ -39,19 +40,20 @@ class PostViewSet(mixins.CreateModelMixin,
             self.permission_classes = [AllowAny]
         if self.action in ['destroy', 'update', 'partial_update']:
             self.permission_classes = [IsAdminUser]
+
+
         return super().get_permissions()
 
 
 
+class FindViewSet(ListAPIView):
+    queryset = Post.objects.filter(storage='find')
+    serializer_class = PostListSerializer
 
-# class FindViewSet(ListAPIView):
-#     queryset = Storage.objects.filter(storage='find')
-#     serializer_class = StorageListSerializer
 
-
-# class LostViewSet(ListAPIView):
-#     queryset = Storage.objects.filter(storage='lost')
-#     serializer_class = StorageListSerializer
+class LostViewSet(ListAPIView):
+    queryset = Post.objects.filter(storage='lost')
+    serializer_class = PostListSerializer
 
 
 
