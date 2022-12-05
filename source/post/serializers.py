@@ -9,7 +9,7 @@ from .utils import normalize_phone
 class PostListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ('storage', 'title','image', 'blur_image', 'status', 'text', 'category', 'address', 'date', 'whatsapp', 'telegram' )
+        fields = ('storage', 'title','image', 'blur_image', 'status','reward', 'text', 'category', 'address', 'date', 'whatsapp', 'telegram' )
 
         # <PIL.Image.Image image mode=RGB size=225x225 at 0x7FDAF19C76D0>
 

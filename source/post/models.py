@@ -58,10 +58,7 @@ class Post(models.Model):
         ('open', 'Открыто'),
         ('closed', 'Закрыто')
     ]
-    # ADDRESS_CHOICES = (
-    #     ('XXXXXX', 'xxxxxx'),
-    #     ('YYYYYY', 'yyyyyy')
-    # )
+
     STORAGE_CHOICES = (
         ('lost', 'Потерял'),
         ('find', 'Нашел')
@@ -87,6 +84,7 @@ class Post(models.Model):
     )
     address = models.CharField(max_length=100)
     whatsapp = models.CharField(max_length=13)
+    reward = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     telegram = models.CharField(max_length=100)
     date = models.DateField(verbose_name='Дата находки')
     created_at = models.DateTimeField(auto_now_add=True)
